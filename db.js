@@ -16,6 +16,12 @@ class DBInstance {
 		this.sequelize = new Sequelize(dbCfg.database, dbCfg.user, dbCfg.password, {
 			host: dbCfg.host,
 			dialect: 'postgres',
+			dialectOptions: {
+				ssl: {
+					require: true,
+					rejectUnauthorized: false
+				}
+			},
 			logging: false,
 		});
 	}
