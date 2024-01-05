@@ -3,6 +3,9 @@ import db from './db.js';
 import rutas from './rutas.js';
 import cors from '@fastify/cors';
 
+const port = process.env.PORT || 3500;
+const host =  ('RENDER' in process.env) ? '0.0.0.0' : 'localhost';
+
 const fastify = Fastify({logger:true});
 await fastify.register(cors, {
 
@@ -33,7 +36,7 @@ async function database() {
 }
 
 try {
-	fastify.listen({port:3500});
+	fastify.listen({host: host, port:port });
 	database();
 } catch(erro) {
 	console.log(erro);
